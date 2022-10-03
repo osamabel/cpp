@@ -1,0 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/19 16:20:48 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/09/22 10:02:25 by obelkhad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
+
+/************************************************ Constractor / Deconstractor */
+Bureaucrat::Bureaucrat() : name("NoName"), grade(0)
+{
+	std::cout << "BUREAUCRAT DEFAULT CONSTRACTOR" << std::endl;
+}
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "BUREAUCRAT DECONSTRACTOR" << std::endl;
+}
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(grade)
+{
+	if (this->grade < 1)
+		throw GradeTooHighException;
+	if (this->grade > 150)
+		throw GradeTooLowException;
+	std::cout << "BUREAUCRAT PARAMETERIZED CONSTRACTOR" << std::endl;
+}
+Bureaucrat::Bureaucrat(const Bureaucrat &copy) : name(copy.name)
+{
+	this->grade = copy.grade;
+	std::cout << "BUREAUCRAT COPY CONSTRACTOR" << std::endl;
+}
+
+/****************************************************************** Overloded */
+Bureaucrat &Bureaucrat::operator = (const Bureaucrat &assign)
+{
+	if (this != &assign)
+		this->grade = assign.grade;
+	return (*this);
+}
+
+std::ostream &operator << (std::ostream &COUT, const Bureaucrat &bureaucrat)
+{
+	COUT << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return (COUT);
+}
+
+/******************************************************************** Methods */
+int Bureaucrat::getGrade() const
+{
+	return (grade);
+}
+std::string Bureaucrat::getName() const
+{
+	return (name);
+}
+void Bureaucrat::gradeUp()
+{
+	grade--;
+	if (grade < 1)
+		throw GradeTooHighException;
+}
+void Bureaucrat::gradeDown()
+{
+	grade++;
+	if (grade > 150)
+		throw GradeTooLowException;
+}
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << "Mr " << name << " signed the " << form.getName() << std::endl;
+	}
+	catch (std::exception &exp)
+	{
+		std::cout << name << " couldn't sign the " << form.getName() << " because he has a :" << std::endl << exp.what() << std::endl;
+	}
+}
+/****************************************************************** Exception */
+const char *TooHigh::what() const throw()
+{
+    return ("grade out of range, ( no one highest then {1} )");
+}
+const char *TooLow::what() const throw()
+{
+    return ("grade out of range, ( no one lowest then {150} )");
+}
