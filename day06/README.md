@@ -52,7 +52,9 @@ int main ()
 	car c;
 
 	drive(&c); // OUT > MODEL : 1982
-	prune((tree*) &t); // we cast our tree
+	
+	
+	prune((tree*) &t); // we cast our "const" tree
 	tree
 	+--------+
       { |00000000| } <- false
@@ -60,6 +62,8 @@ int main ()
 	|00000000|
 	|00000000|
 	+--------+
+	
+	
 	drive((car*) &t); //with a cast from tree to car, we can diriving our tree!!
 	        +--------+
       model ->  |00000000|
@@ -68,6 +72,8 @@ int main ()
 	        |00000000|
 	        +--------+ 
 	//OUT > MODEL : 0
+
+
 	prune((tree*) &c);
 	car                   c->isLive = false;
 	+--------+             +--------+ 
@@ -77,6 +83,8 @@ int main ()
 	|00000000|             |00000000|  
 	+--------+             +--------+ 
     c-> model = 1982       c-> model = 1792
+    
+   
     drive(&c); // OUT > MODEL : 1792
 }
 ```
