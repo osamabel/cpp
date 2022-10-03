@@ -1,6 +1,8 @@
 # Casting
 - casts allow us to :
 
+<p style="color:blue">some *blue* text</p>
+
 work with raw memory.
 navigate inheritance hierarchy
 
