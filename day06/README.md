@@ -14,7 +14,7 @@ navigate inheritance hierarchy
 | **size_t** s = f           | 18446744073709551574 (**-42.1234** is assigned to **unsigned long**) |
 
 
-C++ will allow us convert values of one fundamental type to another fundamental type. 
+C++ will allow us convert values of one fundamental type to another fundamental type.
 The process of converting a value from one type to another type is called **type conversion**.
 When the compiler does type conversion on our behalf without us explicitly asking, 
 we call this **implicit type conversion**. 
@@ -55,14 +55,14 @@ int main ()
 	prune((tree*) &t); // we cast our tree
 	tree
 	+--------+
-  { |00000000| } <- false
+      { |00000000| } <- false
 	|00000000|
 	|00000000|
 	|00000000|
 	+--------+
 	drive((car*) &t); //with a cast from tree to car, we can diriving our tree!!
 	        +--------+
-  model ->  |00000000|
+      model ->  |00000000|
 	        |00000000|
 	        |00000000|
 	        |00000000|
