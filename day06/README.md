@@ -4,7 +4,7 @@
 work with raw memory.
 navigate inheritance hierarchy
 
-## Implicit type conversion
+# Implicit type conversion
 
 | Assignment | Value |
 |------------|-------|
@@ -14,7 +14,7 @@ navigate inheritance hierarchy
 | **size_t** s = f           | 18446744073709551574 (**-42.1234** is assigned to **unsigned long**) |
 
 
-C++ will allow us convert values of one fundamental type to another fundamental type.
+C++ will allow us convert values of one fundamental type to another fundamental type. 
 The process of converting a value from one type to another type is called **type conversion**.
 When the compiler does type conversion on our behalf without us explicitly asking, 
 we call this **implicit type conversion**. 
@@ -29,8 +29,18 @@ int main() { print(5); }
 >the int argument `5` will be converted to double value `5.0`
 >and then copied into parameter `x`.
 
-## explicit type conversion -> (C-style casts)
+- Order of the typecast to avoid data lost:
+```mermaid
+	graph LR 
+	A[bool]  -->  B[char] --> C[short int] --> D[int]
+	D --> E[unsigned int] --> F[long int] --> G[unsigned long int]
+	G --> H[long long int] --> I[float] --> J[double] --> L[long double]
+```
 
+# explicit type conversion 
+
+## 1) cast operators :
+### 1.1) C-style casts
 ```cpp
 struct tree {bool isLive = true;};
 struct car {int model = 1982;};
@@ -52,28 +62,22 @@ int main ()
 	car c;
 
 	drive(&c); // OUT > MODEL : 1982
-	
-	
-	prune((tree*) &t); // we cast our "const" tree
+	prune((tree*) &t); // we cast our tree
 	tree
 	+--------+
-      { |00000000| } <- false
+  { |00000000| } <- false
 	|00000000|
 	|00000000|
 	|00000000|
 	+--------+
-	
-	
 	drive((car*) &t); //with a cast from tree to car, we can diriving our tree!!
 	        +--------+
-      model ->  |00000000|
+  model ->  |00000000|
 	        |00000000|
 	        |00000000|
 	        |00000000|
 	        +--------+ 
 	//OUT > MODEL : 0
-
-
 	prune((tree*) &c);
 	car                   c->isLive = false;
 	+--------+             +--------+ 
@@ -83,8 +87,6 @@ int main ()
 	|00000000|             |00000000|  
 	+--------+             +--------+ 
     c-> model = 1982       c-> model = 1792
-    
-   
     drive(&c); // OUT > MODEL : 1792
 }
 ```
@@ -112,7 +114,7 @@ Avoid using ~~C-style casts~~ !!
 because it doesn't check casting and may allow a **dangerous cast** to happen.
 
 
-## explicit type conversion -> (static_cast)
+### 1.2) static_cast
 if we *intentionally* wanted to pass a double value to a function taking an integer?
 > it might cause us to overlook some other warning that represents a serious **problem** !
 
@@ -126,7 +128,8 @@ to convert a value from one type to another type.
  ```
  >**static_cast** takes the value from an expression as input, 
  >and returns that value converted into the type specified by _\<new type\>_
- >it happened on **the compile time**
+ >it happened on **the compile time**, so programmer has responsibility 
+ >to check whether the type casting that correct or not.
 
 #### Let’s update our prior program using  `static_cast`:
 ```cpp
@@ -170,7 +173,131 @@ int main()
 }
 ```
 
-## explicit type conversion -> (Overloading typecasts)
+**static_cast** does not protect against **downcasting** to an unrelated type
+```cpp
+struct Base { 
+	virtual ~Base();
+	virtual void fun() { std::cout << "Base\n";}
+};
+struct D1 : public Base {void fun() { std::cout << "D1\n";}};
+struct D2 : public Base {void fun() { std::cout << "D2\n";}};
+
+int main (){
+	D1 d1;
+	Base &b = d1;
+	d1.fun(); // OUT : D1
+	b.fun();  // OUT : D1
+	D2 d2 = static_cast<D1>(&b);
+	d2.fun(); // OUT : D1
+	
+}
+```
+
+### 1.3) Dynamic casting
+```mermaid
+	graph TB 
+	A[Base]  -->  B[Derived]
+```
+```cpp
+#include <iostream>
+#include <string>
+
+class Base
+{
+protected:
+	int m_value;
+public:
+	Base(int value) : m_value(value) {}
+	virtual ~Base() {}; // Dynamic casting require type to be polymorphic, at least one member virtual
+};
+
+class Derived : public Base
+{
+private:
+	std::string m_name;
+public:
+	Derived(int value, const std::string &name) : Base(value), m_name(name) {} //parameterized constructor
+	const std::string &getName() const { return m_name; }                      // geter()
+};
+
+int main()
+{
+	Base* base = new Derived(1, "Apple");
+	std::cout << base->getName(); // ERROR : no member named 'getName' in 'Base'
+	delete base;
+	return 0;
+}
+```
+- How would we call Derived::getName() ?
+
+Yeah, we can add a **virtual function** to Base called **getName()**, 
+but we just polluting our Base class with things that really should only be the concern of the Derived class.
+The process of converting a *Derived pointer* into a *Base pointe*r called **" upcasting "**.
+How can we convert a *Base pointer* back into a *Derived pointer*, to call **getName()** directly using that pointer?
+
+**dynamic_cast**  can be used for just this purpose. 
+The most common use for dynamic casting is for converting *base-class pointers* into *derived-class* pointers. 
+This process is called  **downcasting**.
+
+```cpp
+int main()
+{
+	Base* base = new Derived(1, "Apple");
+	Derived *driv = dynamic_cast<Derived *>(base); 
+	
+	// If a dynamic_cast fails, the result of the conversion will be a null pointer.
+	if (driv != nullptr)
+		std::cout << driv->getName();
+	delete base;
+	return 0;
+}
+```
+
+> can only be a reference or pointer
+> form must be polymorphic
+> it is a **run time**, it check object types at run time.
+> return **nullptr** for pointers or throw **std::bad_cast** for reference if the type are not related
+
+
+### 1.4) reinterpret_cast
+
+>shouldn't be using it, if you do it's up to you!
+
+it's close to **C-style casts**, it called *type-punning*.
+it can change any pointer/reference to any other pointer/reference.
+does not ensure sizes of **To** and **From** are the same.
+
+```cpp
+int main ()
+{
+	int *ptr = new int(65);
+	char *c = reinterpret_cast<char *>(ptr);
+
+	ptr = 0xabc
+	+--------+
+    |01000001|
+	|00000000|
+	|00000000|
+	|00000000|
+	+--------+
+
+	&c = 0xabc
+	+--------+
+  [ |01000001| ] <===> 'A'
+	|00000000|
+	|00000000|
+	|00000000|
+	+--------+
+	std::cout << ptr;  //0xabc
+	std::cout << c;    //A
+    std::cout << *ptr; //65
+    std::cout << *c;   //A
+}
+```
+
+
+## 2 . assignment operators :
+### 2.1) Overloading typecasts
 
 C++ already knows how to convert between the built-in data types (int, double ...). 
 However, it does not know how to convert any of our **user-defined classes**. 
@@ -278,82 +405,8 @@ void printCents(Cents cents)
 
 int main()
 {
-    Dollars dollars{ 9 };
+    Dollars dollars(9);
     printCents(dollars); // dollars will be implicitly cast to a Cents here
     return 0;
 }
 ```
-
-## explicit type conversion -> (Dynamic casting)
-```mermaid
-	graph TD 
-	A[Base]  -->  B[Derived]
-```
-```cpp
-#include <iostream>
-#include <string>
-
-class Base
-{
-protected:
-	int m_value;
-public:
-	Base(int value) : m_value(value) {}
-	virtual ~Base() {}; // Dynamic casting require type to be polymorphic, at least one member virtual
-};
-
-class Derived : public Base
-{
-protected:
-	std::string m_name;
-public:
-	Derived(int value, const std::string &name) : Base(value), m_name(name) {}
-	const std::string &getName() const { return m_name; }
-};
-
-Base *getObject(bool returnDerived)
-{
-	if (returnDerived)
-		return new Derived(1, "Apple");
-	return new Base(2);
-}
-
-int main()
-{
-	Base* b = getObject(true);
-	std::cout << b->getName(); // ERROR : no member named 'getName' in 'Base'
-	delete b;
-	return 0;
-}
-```
-- How would we call Derived::getName() ?
-
-Function **getObject()** always returns a *Base* pointer,  may be pointing to **Base** or **Derived**.
-Yeah, we can add a **virtual function** to Base called **getName()**,
-but we just polluting our Base class with things that really should only be the concern of the Derived class.
-The process of converting a Derived pointer into a Base pointer called **( upcasting )**.
-How can we convert a Base pointer back into a Derived pointer to call **Derived::getName()**
-directly using that pointer?
-
-**dynamic_cast**  can be used for just this purpose.
-The most common use for dynamic casting is for converting base-class pointers into derived-class pointers.
-This process is called  **downcasting**.
-
-> it is a **run time**, because it check object types at run time
-
-
-```cpp
-int main()
-{
-	// note : base pointing to Derived object.
-	Base *base = getObject(true);
-	
-	// note : if base pointing to Base object, Null will be returned to driv.
-	Derived *driv = dynamic_cast<Derived *>(base);
-	
-	// If a dynamic_cast fails, the result of the conversion will be a null pointer.
-	if (driv != nullptr)
-		std::cout << driv->getName();
-	delete base;
-	return 0;
-}
