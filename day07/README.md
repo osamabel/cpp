@@ -258,21 +258,3 @@ it provides **containers** , **iterators** and **algorithms**
 # Containers
 ## 1 - Vector
 
-
-H~2~O
-
-I need to highlight these ==very important words==.
-
-X^2^
-
-### My Great Heading {#custom-id}
-
-That is so funny! :joy:
-
-- [ ] Write the press release  
-- [ ] Update the website  
-- [ ] Contact the media
-~~The world is flat.~~
-
-term  
-: definition
