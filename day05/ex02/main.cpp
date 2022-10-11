@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:04:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 10:55:13 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:06:56 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int main()
 	ShrubberyCreationForm	ShrubberyOsama("ShrubberyOsama");
 	RobotomyRequestForm		RobotomyOsama("RobotomyOsama");
 	PresidentialPardonForm  PardonOsama("PardonOsama");
+
 	ShrubberyCreationForm	ShrubberyNoob("ShrubberyNoob");
 	RobotomyRequestForm		RobotomyNoob("RobotomyNoob");
 	PresidentialPardonForm  PardonNoob("PardonNoob");
+
 	Bureaucrat				osama("osama", 5);
 	Bureaucrat				noob("noob", 100);
 	std::cout << std::endl << "############################### [ OSAMA ] ###########################" << std::endl << std::endl;

@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:40:44 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/22 11:25:14 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:32:34 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,12 @@ class Bureaucrat;
 /****************************************************************[ EXCEPTION ]*/
 class FormTooLow : public std::exception
 {
-private:
-// 	std::string error;
-// public:
-// 	FormTooLow() throw() {};
-// 	FormTooLow(std::string error) throw();
-// 	~FormTooLow() throw();
+public:
 	const char* what() const throw();
 };
 class FormTooHigh : public std::exception
 {
-// private:
-// 	std::string error;
-// public:
-// 	FormTooHigh(std::string error) throw();
-// 	~FormTooHigh() throw();
+public:
 	const char* what() const throw();
 };
 /*********************************************************************[ FORM ]*/

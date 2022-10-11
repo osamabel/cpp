@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 08:49:16 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 10:20:38 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:03:46 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
     if (!getformIsSigned())
         throw FormNotSigned();
 	std::cout << "	" << "+-------------------- Exectuting --------------------------+" << std::endl;
-    std::cout << "	" << "DRILLING {noise!} - DRILLING {noise!} - DRILLING {noise!}" <<std::endl;
+    std::cout << "	" << "DRILLING {noise!} - DRILLING {noise!} - DRILLING {noise!}" << std::endl;
 	std::srand(std::time(0));
     int request = std::rand() % 2;
     if (request)

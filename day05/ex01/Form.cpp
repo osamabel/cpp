@@ -6,14 +6,14 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:41:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/22 11:31:43 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:52:01 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 /************************************************ Constractor / Deconstractor */
-Form::Form() : name("NoForm"), gradeToSigned(0), gradeToExecuted(0)
+Form::Form() : name("Form"), gradeToSigned(150), gradeToExecuted(150)
 {
 	formIsSigned = false;
 	std::cout << "FORM DEFAULT CONSTRACTOR" << std::endl;
@@ -25,11 +25,11 @@ Form::~Form()
 Form::Form(std::string const name, const int gradeToSigned, const int gradeToExecuted)
 : name(name), gradeToSigned(gradeToSigned), gradeToExecuted(gradeToExecuted)
 {
+	this->formIsSigned = false;
 	if (this->gradeToSigned < 1 || this->gradeToExecuted < 1)
 		throw GradeTooHighException;
 	if (this->gradeToSigned > 150 || this->gradeToExecuted > 150)
 		throw GradeTooLowException;
-	this->formIsSigned = false;
 	std::cout << "FORM PARAMETERIZED CONSTRACTOR" << std::endl;
 }
 Form::Form(const Form &copy) : name(copy.name), gradeToSigned(copy.gradeToSigned), gradeToExecuted(copy.gradeToExecuted)
@@ -86,20 +86,10 @@ void Form::beSigned(const Bureaucrat &Bureau)
     formIsSigned = 1;
 }
 /****************************************************************** Exception */
-// FormTooHigh::FormTooHigh(std::string error) throw()
-// {
-// 	this->error = error;
-// }
-// FormTooHigh::~FormTooHigh() throw(){}
 const char *FormTooHigh::what() const throw()
 {
     return ("Higher Grade");
 }
-// FormTooLow::FormTooLow(std::string error) throw()
-// {
-// 	this->error = error;
-// }
-// FormTooLow::~FormTooLow() throw(){}
 const char *FormTooLow::what() const throw()
 {
     return ("Lower Grade");
