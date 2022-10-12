@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:35:51 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/05 18:59:24 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:54:59 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ int main ()
 	std::cout << "the actual type of the object referenced by base :";
 	identify(*x);
 	std::cout << std::endl;
+	delete x;
 }
