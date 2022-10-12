@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:04:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/22 11:30:48 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:43:53 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int main()
 		std::cout << std::endl;
 		std::cout << "~~~~~~~~~~~~~~~~~~ Sign ~~~~~~~~~~~~~~~~~~~" << std::endl;
 		bel.signForm(form_1);
-		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;;
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << std::endl;
 		std::cout << "~~~~~~~~~~~~~~~ EXCEPTION ~~~~~~~~~~~~~~~~~" << std::endl;
 		std::cerr << e.what() << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;;
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 	}
 }
 

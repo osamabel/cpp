@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 21:37:09 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/05 13:23:42 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:41:11 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void Caster::print()
 	// int
 	std::cout << "int: ";
 	if (infint || nanVal)
-		std::cout <<  "impossible " << nanVal<< "-" << infint << std::endl;
+		std::cout <<  "impossible " << std::endl;
 	else
 		std::cout << myIntiger << std::endl;
 

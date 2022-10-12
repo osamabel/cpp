@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:02:07 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 10:17:10 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:06:02 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     std::ofstream outfile(target + "_shrubbery");
     if (outfile.is_open())
         outfile << shrubbery;
+	else
+		std::cerr << "Can't open file\n";
 }

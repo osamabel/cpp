@@ -6,14 +6,14 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:20:48 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/21 18:55:37 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:30:26 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 /************************************************ Constractor / Deconstractor */
-Bureaucrat::Bureaucrat() : name("NoName"), grade(0)
+Bureaucrat::Bureaucrat() : name("unknowen"), grade(150)
 {
 	std::cout << "BUREAUCRAT DEFAULT CONSTRACTOR" << std::endl;
 }
@@ -60,15 +60,15 @@ std::string Bureaucrat::getName() const
 }
 void Bureaucrat::gradeUp()
 {
-	grade--;
-	if (grade < 1)
+	if (grade - 1 < 1)
 		throw GradeTooHighException;
+	grade--;
 }
 void Bureaucrat::gradeDown()
 {
-	grade++;
-	if (grade > 150)
+	if (grade + 1 > 150)
 		throw GradeTooLowException;
+	grade++;
 }
 
 /****************************************************************** Exception */

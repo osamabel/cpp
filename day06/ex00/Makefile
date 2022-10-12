@@ -1,4 +1,4 @@
-NAME =  cast
+NAME =  convert
 CPPFLAG = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp Caster.cpp
 OBJ = $(SRC:.cpp=.o)

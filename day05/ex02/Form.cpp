@@ -6,14 +6,14 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:41:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 08:31:08 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:52:38 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 /************************************************ Constractor / Deconstractor */
-Form::Form() : name("NoForm"), gradeToSigned(0), gradeToExecuted(0)
+Form::Form() : name("Form"), gradeToSigned(150), gradeToExecuted(150)
 {
 	formIsSigned = false;
 	std::cout << "FORM DEFAULT CONSTRACTOR" << std::endl;

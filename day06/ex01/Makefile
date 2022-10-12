@@ -1,5 +1,5 @@
 NAME =  Serialization
-CPPFLAG = -Wall -Wextra -Werror -std=c++98
+CPPFLAG = -Wall -Wextra -Werror -std=c++98 -g
 SRC = main.cpp Serialization.cpp
 OBJ = $(SRC:.cpp=.o)
 

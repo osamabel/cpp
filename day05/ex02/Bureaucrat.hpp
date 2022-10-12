@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:07:52 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/22 17:38:32 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:47:08 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 };
 class TooHigh : public std::exception
 {
+public:
 	const char* what() const throw();
 };
 

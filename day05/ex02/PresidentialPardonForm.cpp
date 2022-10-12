@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:55:03 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 10:17:27 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:02:59 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
     if (!getformIsSigned())
         throw FormNotSigned();
 	std::cout << "	" << "+-------------------- Exectuting --------------------------+" << std::endl;
-    std::cout << "	" << target << " has been pardoned by Zaphod Beeblebrox." <<std::endl;
+    std::cout << "	" << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 	std::cout << "	" << "+----------------------------------------------------------+" << std::endl;
 }

@@ -6,14 +6,14 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:20:48 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/09/23 10:39:16 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:46:06 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 /************************************************ Constractor / Deconstractor */
-Bureaucrat::Bureaucrat() : name("NoName"), grade(0)
+Bureaucrat::Bureaucrat() : name("unknowen"), grade(150)
 {
 	std::cout << "BUREAUCRAT DEFAULT CONSTRACTOR" << std::endl;
 }
@@ -29,9 +29,9 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(gr
 		throw GradeTooLowException;
 	std::cout << "BUREAUCRAT PARAMETERIZED CONSTRACTOR" << std::endl;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat &copy) : name(copy.name)
+Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 {
-	this->grade = copy.grade;
+	*this = copy;
 	std::cout << "BUREAUCRAT COPY CONSTRACTOR" << std::endl;
 }
 
@@ -60,15 +60,15 @@ std::string Bureaucrat::getName() const
 }
 void Bureaucrat::gradeUp()
 {
-	grade--;
-	if (grade < 1)
+	if (grade - 1 < 1)
 		throw GradeTooHighException;
+	grade--;
 }
 void Bureaucrat::gradeDown()
 {
-	grade++;
-	if (grade > 150)
+	if (grade + 1 > 150)
 		throw GradeTooLowException;
+	grade++;
 }
 void Bureaucrat::signForm(Form &form)
 {
