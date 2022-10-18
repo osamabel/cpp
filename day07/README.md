@@ -251,10 +251,3 @@ int main ()
 	909
 ```
 
-# STL
-The standard Template Library is a part of C++ standard.
-it provides **containers** , **iterators** and **algorithms** 
-
-# Containers
-## 1 - Vector
-
