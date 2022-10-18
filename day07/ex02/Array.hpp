@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:20:23 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/10 17:48:59 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/12 20:01:39 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ public:
 		const char *what() const throw();
 	};
 };
+
 //include template implemetation
 #include "Array.tpp"
 
