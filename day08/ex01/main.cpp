@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:49:47 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/17 18:53:38 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:44:31 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main()
 	try
 	{
 		std::cout << numbers1[99]<< std::endl;
-    	std::cout << "----------< Out of Range >-----------" << std::endl;
 		std::cout << numbers1[50]<< std::endl;
 		std::cout << numbers1[SIZE_C]<< std::endl;
 	}

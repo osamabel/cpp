@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:11:44 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/17 18:47:24 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:45:42 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ std::vector<int> Span::getvec()
 {
 	return numbers;
 }
+
 void Span::print()
 {
 	if (N > 0)

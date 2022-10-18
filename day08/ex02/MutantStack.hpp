@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:03:29 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/10/18 16:18:13 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:15:22 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include <string>
 
 template< class T> class MutantStack : public std::stack<T, std::deque<T> >
+
+template <class T, class Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container>
 {
 public:
 	MutantStack(){};
